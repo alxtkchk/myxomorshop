@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MyxomorShop</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="logo-container">
+        <img src="img/logo.png" alt="Логотип Магазину равликів" class="logo" />
+        <span class="logo-text">MyxomorShop</span>
+      </div>
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Пошук товарів..." />
+      </div>
+      <nav>
+        <button id="btn-about">Про Нас</button>
+        <button id="btn-cart">🛒 Кошик (<span id="cart-count">0</span>)</button>
+        <button id="btn-profile">Увійти</button>
+      </nav>
+    </header>
+
+    <main class="container">
+      <div id="custom-alert" class="custom-alert hidden">
+        <span id="alert-message"></span>
+        <button id="alert-close">×</button>
+      </div>
+      <div id="cards" class="cards-grid" aria-live="polite"></div>
+
+      <template id="card-template">
+        <article class="card">
+          <img class="card__img" alt="" />
+          <div class="card__body">
+            <h2 class="card__title"></h2>
+            <p class="card__desc"></p>
+            <div class="card__footer">
+              <span class="card__price"></span>
+              <button class="card__btn">Buy</button>
+            </div>
+          </div>
+        </article>
+      </template>
+    </main>
+
+    <!-- Модальне вікно кошика -->
+    <div id="cart-modal" class="modal hidden">
+      <div class="modal-content cart">
+        <h2>Ваш кошик</h2>
+        <ul id="cart-list"></ul>
+        <button id="checkout-btn">Оформити замовлення</button>
+        <button id="close-cart" class="modal-close-btn">Закрити</button>
+      </div>
+    </div>
+
+    <!-- Модальне вікно профілю -->
+    <div id="profile-modal" class="modal hidden">
+      <div class="modal-content profile">
+        <h2 id="profile-title">Вхід</h2>
+
+        <form id="auth-form" autocomplete="off">
+          <div class="form-group">
+            <label for="login-input">Логін</label>
+            <input
+              type="text"
+              id="login-input"
+              name="login"
+              placeholder="Введіть логін"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password-input">Пароль</label>
+            <input
+              type="password"
+              id="password-input"
+              name="password"
+              placeholder="••••••••"
+              required
+            />
+          </div>
+
+          <button type="submit" id="auth-btn">Увійти</button>
+          <!-- Випадаюче меню профілю -->
+          <div id="profile-menu" class="profile-menu hidden">
+            <p id="profile-username"></p>
+            <button id="logout-btn">Вийти</button>
+          </div>
+        </form>
+
+        <button id="close-profile" class="modal-close-btn">Закрити</button>
+      </div>
+    </div>
+
+    <!-- Модальне вікно оформлення замовлення -->
+    <div id="order-modal" class="modal hidden">
+      <div class="modal-content order">
+        <h2>Оформлення замовлення</h2>
+        <form id="order-form" class="checkout-form" autocomplete="off">
+          <div class="form-group">
+            <label for="order-name">Ім'я</label>
+            <input
+              type="text"
+              id="order-name"
+              name="name"
+              placeholder="Ваше ім'я"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="order-phone">Телефон</label>
+            <input
+              type="tel"
+              id="order-phone"
+              name="phone"
+              placeholder="+380..."
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="order-address">Адреса</label>
+            <input
+              type="text"
+              id="order-address"
+              name="address"
+              placeholder="Ваша адреса"
+              required
+            />
+          </div>
+          <button type="submit">Підтвердити замовлення</button>
+        </form>
+        <button id="close-order" class="modal-close-btn">Закрити</button>
+      </div>
+    </div>
+
+    <footer>
+      <section id="about">
+        <p>Logika IT School © 2025</p>
+        <p>Релізний проект Олександр Ткачук</p>
+        <p>Телефон: +380 98 765 4321</p>
+        <p>Email: info@myxomor.ua</p>
+        <p>Адреса: вул. Мухомора, 10, Київ, Україна</p>
+      </section>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

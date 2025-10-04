@@ -1,0 +1,527 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  font-family: Inter, Roboto, system-ui, sans-serif;
+  background: var(--bg);
+  color: #111;
+  padding: 24px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  flex: 1;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--card-w), 1fr));
+  gap: var(--gap);
+  margin-top: 16px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(11, 20, 40, 0.06);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 30px rgba(11, 20, 40, 0.1);
+}
+
+.card__img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.card__body {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.card__desc {
+  margin: 0;
+  color: #555;
+  font-size: 0.92rem;
+  flex: 1;
+}
+
+.card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.card__price {
+  font-weight: 800;
+}
+
+.card__btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.card__btn:active {
+  transform: translateY(1px);
+}
+
+.btn__added {
+  background: #aaa !important;
+  color: #eee !important;
+  cursor: default;
+}
+
+:root {
+  --gap: 16px;
+  --card-w: 260px;
+  --bg: #f7f7fb;
+  --accent: #0077ff;
+}
+
+header {
+  background: #733cdb;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* --- Пошук в хедері --- */
+.search-container {
+  flex: 1;
+  /* займає весь простір між логотипом і навігацією */
+  display: flex;
+  justify-content: center;
+  /* центрує поле пошуку */
+  align-items: center;
+  gap: 8px;
+}
+
+.search-container input {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: none;
+  width: 700px;
+  max-width: 100%;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.search-container input:focus {
+  box-shadow: 0 0 6px rgba(0, 119, 255, 0.5);
+}
+
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  /* менше відстані між іконкою і назвою */
+}
+
+.logo {
+  height: 40px;
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+}
+
+footer {
+  background: #333;
+  color: #eee;
+  text-align: center;
+  padding: 15px;
+  margin-top: 60px;
+}
+
+.checkout-form {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkout-form label {
+  font-weight: bold;
+}
+
+.checkout-form input,
+.checkout-form textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.checkout-form button {
+  background: #733cdb;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.checkout-form button:hover {
+  background: #5a2db0;
+}
+
+/* Модальні вікна */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  min-width: 300px;
+}
+
+/* --- Стилі для модальних вікон кошика та профілю --- */
+.modal-content.cart {
+  background: #fff;
+  max-width: 450px;
+  width: 100%;
+  border-radius: 20px;
+  padding: 30px 25px;
+
+  /* Тінь для глибини */
+  box-shadow: 0 12px 24px rgba(115, 60, 219, 0.25),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+
+  /* Плавні переходи */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Легка анімація при відкритті */
+.modal-content.cart.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Списки в кошику */
+#cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+#cart-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+  font-weight: 500;
+}
+
+/* Кнопки */
+#checkout-btn {
+  width: 100%;
+  padding: 12px;
+  background: #733cdb;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#checkout-btn:hover {
+  background: #5a2db0;
+  transform: translateY(-2px);
+}
+
+.modal-close-btn {
+  margin-top: 12px;
+  width: 100%;
+  padding: 10px;
+  background: #eee;
+  color: #333;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modal-close-btn:hover {
+  background: #ddd;
+}
+
+
+.modal-content.profile {
+  background: #fff;
+  max-width: 380px;
+  width: 100%;
+  border-radius: 22px;
+  padding: 28px 26px;
+
+  /* Тінь для глибини */
+  box-shadow: 0 12px 28px rgba(0, 119, 255, 0.25),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+
+  /* Плавний перехід */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Анімація при відкритті */
+.modal-content.profile.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Форма всередині профілю */
+#auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+#auth-form label {
+  font-weight: bold;
+  color: #333;
+}
+
+#auth-form input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+#auth-form input:focus {
+  border-color: #0077ff;
+  box-shadow: 0 0 5px rgba(0, 119, 255, 0.3);
+}
+
+#auth-btn {
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: #0077ff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#auth-btn:hover {
+  background: #005ecb;
+  transform: translateY(-2px);
+}
+
+/* Посилання перемикання режиму */
+#switch-mode {
+  display: block;
+  text-align: center;
+  margin-top: 8px;
+  color: #0077ff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+#switch-mode:hover {
+  color: #005ecb;
+}
+
+/* Кнопка закриття */
+#close-profile {
+  margin-top: 14px;
+  width: 100%;
+  padding: 10px;
+  background: #eee;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#close-profile:hover {
+  background: #ddd;
+}
+
+/* Простенькі інпути */
+input {
+  display: block;
+  margin: 8px 0;
+  padding: 8px;
+  width: 100%;
+}
+
+
+#cart-list li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+  font-weight: 500;
+  gap: 10px;
+}
+
+.cart-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  /* важливо — штовхає весь блок вправо */
+}
+
+.cart-controls .price {
+  margin-left: 8px;
+  /* невеликий відступ від кнопок */
+  font-weight: bold;
+}
+
+.cart-controls .remove {
+  background: #ff5e5b;
+  color: #fff;
+  border: none;
+  padding: 4px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 8px;
+  /* трохи відокремлюємо хрестик від ціни */
+}
+
+.cart-controls .remove:hover {
+  background: #e04848;
+}
+
+.custom-alert {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #733cdb;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  z-index: 2000;
+  min-width: 200px;
+  transition: opacity 0.3s;
+}
+
+.custom-alert.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.custom-alert button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.profile-menu {
+  position: absolute;
+  top: 50px;
+  /* від кнопки профілю вниз */
+  right: 10px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1000;
+}
+
+.profile-menu.hidden {
+  display: none;
+}
+
+.profile-menu p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.profile-menu button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  background: #733cdb;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.profile-menu button:hover {
+  background: #5a2db0;
+}
