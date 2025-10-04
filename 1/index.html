@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyxomorShop</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>MyxomorShop</h1>
+      <button id="btn-cart">Кошик</button>
+    </header>
+
+    <main id="cards">
+      <!-- Картки товарів будуть додаватися JS -->
+    </main>
+
+    <!-- Шаблон картки -->
+    <template id="card-template">
+      <div class="card">
+        <img class="card__img" src="" alt="Товар" />
+        <h3 class="card__title"></h3>
+        <p class="card__desc"></p>
+        <p class="card__price"></p>
+        <button class="card__btn">Купити</button>
+      </div>
+    </template>
+
+    <div id="cart-modal" class="modal hidden">
+      <ul id="cart-list"></ul>
+      <button id="checkout-btn">Оформити замовлення</button>
+      <button id="close-cart">Закрити</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
